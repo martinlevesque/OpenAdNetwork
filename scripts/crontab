@@ -1,0 +1,9 @@
+# m h  dom mon dow   command
+*       *       *       *       *       cd /root && bash /root/checkSpiClick.sh
+1 0 * * * cd /root && mysql -u root -ppw spiclickadmin < flush_daily_tables.sql
+2 0 * * * wget -O /tmp/check.html http://admin.website.com/checkUserActivated.php
+0 23 * * 0 wget -O /tmp/check.html http://admin.website.com/checkWeekReport.php
+0 22 * * 0 mysqlcheck -u root -ppw -o spiclickadmin
+* * * * * wget -O /tmp/check2.html http://admin.website.com/checkGenerateSS.php
+30 0 * * * rm -f /www/website-publisher-directory/ss/*.pdf
+40 0 * * * rm -f /var/log/lighttpd/*.gz
